@@ -1,8 +1,13 @@
+import {ROGUELIKE} from "../topics/roguelike.js";
+import {PUZZLE} from "../topics/puzzles.js";
+import {SANDBOX} from "../topics/sandbox.js";
+
+
 /**
  * @func CreateNewTopic - It builds an array with the necessary structure to be understandable by Game Dev Tycoon
+ * @param {Array} newTopics
  *
- *
- * @return
+ * @return {Array} following props
  * @prop {string} id - Identification of the topic
  * @example Sports
  *
@@ -30,33 +35,90 @@
  * - Sixth position: Casual
  * @example
  * // genreWeightings: (6) [1, 0.6, 0.6, 1, 0.7, 1]
+ *
  */
-const TopicDTO = ({ id, name, audienceWeightings, genreWeightings, missionOverrides }) => {
-    return {
-        id,
-        name,
-        audienceWeightings: () => {
-            const values = []
-            Object.keys(audienceWeightings).forEach(key => {
-                values.push(audienceWeightings[key])
-            });
-            return values;
-        },
-        genreWeightings: () => {
-            const values = []
-            Object.keys(genreWeightings).forEach(key => {
-                values.push(genreWeightings[key])
-            });
-            return values;
-        },
-        missionOverrides: () => {
-            const values = []
-            Object.keys(missionOverrides).forEach(key => {
-                values.push(missionOverrides[key])
-            });
-            return values;
-        },
-    }
+function TopicDTO(newTopics) {
+    return newTopics.map(newTopic => {
+        return {
+            id: newTopic.id,
+            name: newTopic.id,
+            audienceWeightings: () => Object.keys(newTopic.audienceWeightings).forEach(key => newTopic.audienceWeightings[key]),
+            genreWeightings: () => Object.keys(newTopic.genreWeightings).map(key => newTopic.genreWeightings[key]),
+            missionOverrides: () => Object.keys(newTopic.missionOverrides).map(key => newTopic.missionOverrides[key])}
+    })
 }
 
-export default TopicDTO;
+
+/**
+ * CURRENT TOPICS AVAILABLE
+ * - Sports
+ * - Military
+ * - Medieval
+ * - Space
+ * - Racing
+ * - Fantasy
+ * - Pirate
+ * - Sci-fi
+ * - Airplane
+ * - Dungeon
+ * - Mystery
+ * - Martial Arts
+ * - History
+ * - Horror
+ * - Business
+ * - Transport
+ * - Comedy
+ * - Ninja
+ * - Romance
+ * - Movies
+ * - Spy
+ * - Detective
+ * - Cyberpunk
+ * - UFO
+ * - Hospital
+ * - Evolution
+ * - Time travel
+ * - Life
+ * - Virtual Pet
+ * - Vocabulary
+ * - Hunting
+ * - Law
+ * - Game Dev
+ * - City
+ * - School
+ * - Fashion
+ * - Zombies
+ * - Hacking
+ * - Government
+ * - Prison
+ * - Surgery
+ * - Music
+ * - Rythm
+ * - Superheroes
+ * - Post Apocalyptic
+ * - Alternate History
+ * - Vampire
+ * - Werewolf
+ * - Aliens
+ * - Wild West
+ * - Dance
+ * - Cooking
+ * - Farming
+ * - Crime
+ * - Disasters
+ * - Assassin
+ * - Thief
+ * - Colonization
+ * - Construction
+ * - Mythology
+ * - Abstract
+ * - Mad Science
+ * - Extreme Sports
+ * - Dystopian
+ * - Expedition
+ * - Technology
+ */
+
+( () => TopicDTO([ROGUELIKE(), PUZZLE(), SANDBOX()]).forEach(newTopic =>
+    // eslint-disable-next-line no-undef
+    Topics.topics.push(newTopic)))()
