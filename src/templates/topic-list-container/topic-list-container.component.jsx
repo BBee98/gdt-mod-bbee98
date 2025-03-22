@@ -1,28 +1,19 @@
-import {useEffect, useRef} from "react";
+import React from "react";
+import {createPortal} from "react-dom";
 
-const TopicListContainer = () => {
+export function TopicListContainer() {
 
-    const element = document.querySelector("#listContainer");
-    const container = useRef(null);
+    const root = document.querySelector("#gameDefinition > .selectionOverlayContainer")
 
-    useEffect(() => {
-        if(element && container?.current){
-            element.replaceWith(container.current);
-        }
-    }, [container.current, element]);
-// eslint-disable-next-line no-undef
-    const listOfTopics = Topics.topics;
-
+    if (!root) { return null }
 
     // eslint-disable-next-line no-undef
-    console.log("Topics.topics", Topics.topics)
-    console.log("LIST OF TOPICS", listOfTopics)
+    const listOfTopics = (Topics && Topics.topics) ? Topics.topics : [];
 
-    return (<ul id="listContainer" ref={container}>
-            { (listOfTopics && listOfTopics.length > 0) && listOfTopics.map(topic => {
+    return createPortal(<ul id="bbee98-topicListContainer">
+            { (listOfTopics.length > 0) && listOfTopics.map(topic => {
                 return <li> { topic.name }</li>
             })}
-            </ul>)
+            </ul>, root)
 }
 
-export default TopicListContainer;

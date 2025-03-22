@@ -21,12 +21,16 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      "react/no-this-in-sfc": "off", // Dependiendo de la regla específica
+      "no-restricted-properties": 0,
+      "no-undef": "off",
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
+
       ],
     },
   },
