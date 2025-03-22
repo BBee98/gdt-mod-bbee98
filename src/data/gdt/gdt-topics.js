@@ -3,7 +3,11 @@
  * @typedef {Array} BASE_TOPIC_GAMES - Array of base game topics.
  *
  * @prop {string} id - Identification of the topic
+ * @example Sports
+ *
  * @prop {string} name - Name of the topic
+ * @example Sports
+ *
  * @prop {Array<number>} missionOverrides - Defines the importance of engine, gameplay,
  * story/quests, dialogues, level design, AI, world design, graphics and sound for each topic.
  * @see https://github.com/greenheartgames/gdt-modAPI/wiki/missionOverrides
@@ -16,7 +20,7 @@
  * @example
  * // audienceWeightings: (3) [1, 1, 0.8]
  *
- * @prop {Array<number>} genreWeightings: - Array of six elements. It indicates the influence on the genre
+ * @prop {Array<number>} genreWeightings - Array of six elements. It indicates the influence on the genre
  * - First position: Action
  * - Second position: Adventure
  * - Third position: Rol
@@ -29,6 +33,7 @@
 
 
 import {SetInfluence} from "../utils.js";
+import {BASE_GENRES} from "./gdt-genres.js";
 
 // eslint-disable-next-line no-undef
 export const BASE_TOPIC_GAMES = Topics.topics.map( topic => {
@@ -40,14 +45,7 @@ export const BASE_TOPIC_GAMES = Topics.topics.map( topic => {
                 adult: SetInfluence(topic.audienceWeightings[2]),
             },
             name: topic.name,
-            genreWeightings: {
-                action: SetInfluence(topic.genreWeightings[0]),
-                adventure: SetInfluence(topic.genreWeightings[1]),
-                rol: SetInfluence(topic.genreWeightings[2]),
-                simulation: SetInfluence(topic.genreWeightings[3]),
-                strategy: SetInfluence(topic.genreWeightings[4]),
-                casual: SetInfluence(topic.genreWeightings[5]),
-            }
+            genreWeightings: BASE_GENRES(topic)
         };
 });
 

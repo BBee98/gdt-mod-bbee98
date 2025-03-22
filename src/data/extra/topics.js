@@ -1,6 +1,4 @@
-import BASE_TOPIC_GAMES from '../index.js';
 import {SetInfluence} from "../utils.js";
-
 
 
 const addExtraTopic = (extraTopic) => {
