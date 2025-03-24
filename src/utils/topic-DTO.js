@@ -119,6 +119,6 @@ function TopicDTO(newTopics) {
  * - Technology
  */
 
-( () => TopicDTO([ROGUELIKE(), PUZZLE(), SANDBOX()]).forEach(newTopic =>
+TopicDTO([ROGUELIKE(), PUZZLE(), SANDBOX()]).forEach(newTopic =>
     // eslint-disable-next-line no-undef
-    Topics.topics.push(newTopic)))()
+    Topics.topics.push(newTopic))

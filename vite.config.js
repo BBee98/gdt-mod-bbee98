@@ -11,7 +11,7 @@ export default defineConfig({
       input: './src/main.js', // Archivo de entrada principal
       output: {
         entryFileNames: 'main.js', // Renombra el archivo de salida
-        assetFileNames: '[name].[ext]', // Maneja otros assets (como CSS, si hay)
+        assetFileNames: '[name][extname]', // Maneja otros assets (como CSS, si hay)
         chunkFileNames: '[name].js', // Archivos chunk
       },
     },

@@ -1,19 +1,26 @@
-import React from "react";
-import {createPortal} from "react-dom";
+/** @jsxImportSource @emotion/react */
+import {useEffect, useRef} from "react";
+
+import {styles} from './styles.js'
 
 export function TopicListContainer() {
 
+    const ref = useRef(null)
     const root = document.querySelector("#gameDefinition > .selectionOverlayContainer")
 
-    if (!root) { return null }
+    useEffect(() => {
+        if(root){
+            root.appendChild(ref.current);
+        }
+    }, [root]);
 
     // eslint-disable-next-line no-undef
     const listOfTopics = (Topics && Topics.topics) ? Topics.topics : [];
 
-    return createPortal(<ul id="bbee98-topicListContainer">
+    return (<ul id="bb98mod-topicList" css={styles().list} ref={ref}>
             { (listOfTopics.length > 0) && listOfTopics.map(topic => {
-                return <li> { topic.name }</li>
+                return <li css={[styles().topic, styles().topicDecoration]}> { topic.name }</li>
             })}
-            </ul>, root)
+            </ul>)
 }
 
